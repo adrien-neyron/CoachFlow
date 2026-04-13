@@ -1,73 +1,82 @@
-# Welcome to your Lovable project
+# CoachFlow — Sports Education LMS
 
-## Project info
+A Learning Management System designed to deliver structured educational content for sports educators, coaches, and professionals in physical and sports activities (APS).
 
-**URL**: https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID
+## Overview
 
-## How can I edit this code?
+CoachFlow centralizes and distributes knowledge about physical and sports activities on a single platform. It supports continuous professional development through structured learning paths and modular courses.
 
-There are several ways of editing your application.
+**Content structure:** Programs → Courses → Modules → Lessons
 
-**Use Lovable**
+## Tech stack
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID) and start prompting.
+| Layer | Technology |
+|---|---|
+| Frontend | React, Next.js (App Router) |
+| Styling | Tailwind CSS, shadcn/ui |
+| Language | TypeScript |
+| Backend / API | Next.js API routes |
+| Database | Supabase (PostgreSQL) |
+| Auth & Storage | Supabase |
 
-Changes made via Lovable will be committed automatically to this repo.
+## Getting started
 
-**Use your preferred IDE**
+### Prerequisites
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+- Node.js (via [nvm](https://github.com/nvm-sh/nvm#installing-and-updating)) or [Bun](https://bun.sh)
+- A [Supabase](https://supabase.com) project
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
-
-Follow these steps:
+### Installation
 
 ```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
+# Clone the repository
+git clone https://github.com/adrien-neyron/CoachFlow.git
+cd CoachFlow
 
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
-
-# Step 3: Install the necessary dependencies.
-npm i
-
-# Step 4: Start the development server with auto-reloading and an instant preview.
-npm run dev
+# Install dependencies
+npm install
+# or
+bun install
 ```
 
-**Edit a file directly in GitHub**
+### Environment variables
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+Create a `.env` file at the root of the project:
 
-**Use GitHub Codespaces**
+```env
+VITE_SUPABASE_URL=your_supabase_project_url
+VITE_SUPABASE_PUBLISHABLE_KEY=your_supabase_anon_key
+```
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+### Run locally
 
-## What technologies are used for this project?
+```sh
+npm run dev
+# or
+bun dev
+```
 
-This project is built with:
+## Roadmap
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+### Phase 1 — LMS foundation *(current)*
+- [x] Authentication
+- [x] Course structure
+- [x] Content delivery
+- [ ] User progress tracking
+- [ ] Responsive learning interface
 
-## How can I deploy this project?
+### Phase 2 — Professional platform
+- [ ] Payments and subscriptions
+- [ ] Certification system
+- [ ] Assessments and quizzes
+- [ ] Role management (admin / instructor / learner)
 
-Simply open [Lovable](https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID) and click on Share -> Publish.
+### Phase 3 — Advanced learning ecosystem
+- [ ] Cohort learning
+- [ ] Community features
+- [ ] Analytics dashboard
+- [ ] Mobile optimization
 
-## Can I connect a custom domain to my Lovable project?
+## License
 
-Yes, you can!
-
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
-
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/features/custom-domain#custom-domain)
+Private project — all rights reserved.
