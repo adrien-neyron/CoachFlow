@@ -1,8 +1,10 @@
+import { useEffect, useState } from "react";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
+import { supabase } from "@/integration:supabase/client";
 import Index from "./pages/Index.tsx";
 import NotFound from "./pages/NotFound.tsx";
 import Login from "./pages/Login.tsx";
@@ -17,6 +19,20 @@ import AdminDashboard from "./pages/AdminDashboard.tsx";
 import AdminPresentations from "./pages/AdminPresentations.tsx";
 
 const queryClient = new QueryClient();
+
+const AdminGuard = ({ children }: { children: React.ReactNode }) => {
+  const [status, setStatus] = useState<"loading" | "auth" | "unauth">("loading");
+
+  useEffect(() => {
+    supabase.auth.getSession().then(({ data }) => {
+      setStatus(data.session ? "auth" : "unauth");
+    });
+  }, []);
+
+  if (status === "loading") return null;
+  if (status === "unauth") return <Navigate to="/login" replace />;
+  return <>{children}</>;
+};
 
 const App = () => (
   <QueryClientProvider client={queryClient}>
@@ -34,8 +50,8 @@ const App = () => (
           <Route path="/courses/:courseId/lessons/:lessonId" element={<LessonPage />} />
           <Route path="/community" element={<Community />} />
           <Route path="/certification" element={<Certification />} />
-          <Route path="/admin" element={<AdminDashboard />} />
-          <Route path="/admin/presentations" element={<AdminPresentations />} />
+          <Route path="/admin" element={<AdminGuard><AdminDashboard /></AdminGuard>} />
+          <Route path="/admin/presentations" element={<AdminGuard><AdminPresentations /></AdminGuard>} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
